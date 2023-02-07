@@ -3,6 +3,13 @@
 P_DIR="${1}"
 P_OUT="${2}"
 
+
+if ! command -v gpg > /dev/null
+then
+    echo "gpg does not exists"
+    exit 1
+fi
+
 if [ ! -d "${P_DIR}" ] 
 then
     echo "ERR: Directory to pack "${P_DIR}" does not exists." 
