@@ -24,6 +24,7 @@ P_TIME=$(date +"%Y%m%d_%H%M%S")
 if [ -f $HOME/.gitconfig ]; then
     echo "Creating backup at gitconfig at $HOME/.gitconfig_${P_TIME}"
     mv $HOME/.gitconfig $HOME/.gitconfig_${P_TIME}
+    cp ${P_OUT}/gitconfig/.gitconfig $HOME/.gitconfig    
 else
     cp ${P_OUT}/gitconfig/.gitconfig $HOME/.gitconfig
 fi
