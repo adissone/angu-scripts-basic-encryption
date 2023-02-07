@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 P_INPUT="${1}"
 P_OUT="${2}"
