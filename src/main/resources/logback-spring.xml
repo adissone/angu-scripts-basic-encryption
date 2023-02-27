@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="ROOT_LOG_THRESHOLD" value="ERROR"/>
+
+    <property name="LOG_LEVEL" value="${LOG_LEVEL:-${ROOT_LOG_THRESHOLD}}"/>
+
+    <property name="LOG_FILE_THRESHOLD" value="${LOG_FILE_THRESHOLD:-TRACE}"/>
+    <property name="LOG_CONSOLE_THRESHOLD" value="${LOG_CONSOLE_THRESHOLD:-ERROR}"/>
+
+    <property name="APP_NAME" value="${APP_NAME:-app}"/>
+
+    <property name="LOG_CHARSET" value="${CONSOLE_LOG_CHARSET:-${file.encoding:-UTF-8}}"/>
+    <property name="PATTERN" value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
+
+    <!--    Appenders section -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${LOG_CONSOLE_THRESHOLD}</level>
+        </filter>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+            <charset>${LOG_CHARSET}</charset>
+        </encoder>
+    </appender>
+
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_FILE}</file>
+        <append>false</append>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${LOG_FILE_THRESHOLD}</level>
+        </filter>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+            <charset>${LOG_CHARSET}</charset>
+        </encoder>
+    </appender>
+
+    <appender name="FILE-HISTORY" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_FILE}.history.log</file>
+        <append>true</append>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${LOG_FILE_THRESHOLD}</level>
+        </filter>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+            <charset>${LOG_CHARSET}</charset>
+        </encoder>
+    </appender>
+
+    <!--    Loggers section-->
+    <root level="${LOG_LEVEL}">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="FILE-HISTORY"/>
+    </root>
+
+
+</configuration>
+<!--<property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/spring.log}"/>-->

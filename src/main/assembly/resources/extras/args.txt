@@ -1,0 +1,9 @@
+--user-gitconfig-path=/home/really/.gitconfig
+--user-name=Test name
+--user-login=testuser
+--user-email=test
+--project-base-path=projects/gh/**
+--project-gitconfig-path=/home/adi/angubs/gitconfig/gitconfig-gh
+--project-git-url=github.com
+--project-git-token=TOKEN
+--backup-config=false
